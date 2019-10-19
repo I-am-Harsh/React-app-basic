@@ -6,6 +6,7 @@
     "@react-google-maps/api": "^1.6.0",
     "bootstrap": "^4.3.1",
     "bootstrap-social": "^5.1.1",
+    "cross-fetch": "^3.0.4",
     "fontawesome": "^5.6.3",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",

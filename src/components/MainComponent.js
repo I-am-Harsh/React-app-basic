@@ -35,8 +35,8 @@ class Main extends React.Component {
 
   componentDidMount(){
     this.props.fetchDishes();
-    this.props.fetchComments(),
-    this.props.fetchPromos()
+    this.props.fetchComments();
+    this.props.fetchPromos();
     // this.props.fetchLeaders()
   }
 

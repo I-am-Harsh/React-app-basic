@@ -1,5 +1,4 @@
 import * as ActionTypes from './ActionTypes';
-import { DISHES } from './../shared/dishes';
 import { baseUrl } from './../shared/baseUrl';
 
 export const addComment = (dishId, rating, author, comment) =>({
@@ -57,7 +56,7 @@ export const addComments = (comments) => ({
 
 export const fetchPromos = () => (dispatch) => {
 
-    dispatch(PromosLoading(true));
+    // dispatch(PROMOS_LOADING(true));
 
     return fetch(baseUrl + 'promotions')
         .then(response => response.json())
