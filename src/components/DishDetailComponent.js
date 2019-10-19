@@ -3,7 +3,9 @@ import {CardTitle, Card, CardBody,CardText,CardImg, Breadcrumb, BreadcrumbItem} 
 import { Link } from 'react-router-dom';
 import {Modal, ModalBody, ModalHeader, Button, ModalFooter, Row, Col, Label} from 'reactstrap';
 import {Control, LocalForm, Errors } from 'react-redux-form';
-// import SubmitComment from './SubmitCommentComponent';
+import {Loading} from './LoadingComponent';
+import { baseUrl } from './../shared/baseUrl';
+
 
 const required = (val) => val && val.length 
 const maxLength = (len) => (val) => !(val) || (val.length <= len);
@@ -106,9 +108,26 @@ class SubmitComment extends Component{
 }
 
 const DishDetail = (props) =>{
-    
     var dish = props.dish;
-    if(dish){
+    if(props.isLoading){
+        return(
+            <div className = 'container'>
+                <div className = 'row'>
+                    <Loading/>
+                </div>
+            </div>
+        ); 
+    }
+    else if(props.errMess){
+        return(
+            <div className = 'container'>
+                <div className = 'row'>
+                    <h4>{props.errMess}</h4>
+                </div>
+            </div>
+        );
+    }
+    else if(dish){
         return(
             <div className="container" key={dish.id}>
                 <div className = 'row'>
@@ -124,7 +143,7 @@ const DishDetail = (props) =>{
                 <div className = 'row'>
                     <div className="col-md-6">
                         <Card>
-                            <CardImg width="50%" src={dish.image} alt={dish.image} />
+                            <CardImg width="50%" src={baseUrl + dish.image} alt={dish.name} />
                             <CardBody>
                                 <CardTitle><b>{dish.name}</b></CardTitle>
                                 <CardText> {dish.description} </CardText>
@@ -136,48 +155,42 @@ const DishDetail = (props) =>{
                             addComment = {props.addComment}
                             dishID = {props.dish.id}
                         />
-                        {console.log(props.dish.id)}
                         <SubmitComment dishID = {props.dish.id} addComment = {props.addComment}/>
                     </div>  
                 </div>
             </div>
         );
     }
-    else{ 
-        return(
-            <div>
-            </div>);
-        }
-    }
+}
   
 
-    const Comm = (props, addComment, dishID) => {
-            var commentDish = props.comment.comments;
-            
-            return(
-            <div className="col-md-6">
-                <h2>Comments</h2>
-                <div>
-                    {
-                        commentDish.map(comment =>{
-                            return(
-                                <div key = {comment.id}>
-                                    
-                                    <h3>{comment.comment}</h3>
-                                    <p>-- {comment.author}</p>
-                                    <p>{
-                                    new Intl.DateTimeFormat('en-US',{year:'numeric', month:
-                                    'short', day:'2-digit'}).format(new Date(Date.parse(comment.date)))
-                                    }
-                                </p>
-                                </div>
-                            );
-                        })
-                    }
-                </div>
+const Comm = (props) => {
+        var commentDish = props.comment.comments;
+        
+        return(
+        <div className="col-md-6">
+            <h2>Comments</h2>   
+            <div>
+                {
+                    commentDish.map(comment =>{
+                        return(
+                            <div key = {comment.id}>
+                                
+                                <h3>{comment.comment}</h3>
+                                <p>-- {comment.author}</p>
+                                <p>{
+                                new Intl.DateTimeFormat('en-US',{year:'numeric', month:
+                                'short', day:'2-digit'}).format(new Date(Date.parse(comment.date)))
+                                }
+                            </p>
+                            </div>
+                        );
+                    })
+                }
             </div>
-        );
-    }
+        </div>
+    );
+}
 
 
 
