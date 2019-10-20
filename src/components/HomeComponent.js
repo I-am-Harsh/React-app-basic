@@ -5,7 +5,6 @@ import { Loading } from './LoadingComponent';
 import { baseUrl } from './../shared/baseUrl';
 //why this shit {}
 const RenderCard = ({item, isLoading, errMess}) =>{
-    console.log('This is item :',item)
     if(isLoading){
         return(
             <Loading/>

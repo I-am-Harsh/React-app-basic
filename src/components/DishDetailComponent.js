@@ -29,11 +29,7 @@ class SubmitComment extends Component{
     
 
     handleSubmit = (values) =>{
-        // alert('Current State is: ' + JSON.stringify(values));
-        this.props.addComment(this.props.dishID, values.rating, values.name, values.comment);
-        // console.log(values.author)
-        // console.log(values.comment)
-        // this.toggleModal();
+        this.props.postComment(this.props.dishID, values.rating, values.name, values.comment);
     }
 
     render(){
@@ -152,10 +148,10 @@ const DishDetail = (props) =>{
                     </div>
                     <div className = 'col-md-6 mb-3'>
                         <Comm comment = {props}
-                            addComment = {props.addComment}
+                            postComment = {props.postComment}
                             dishID = {props.dish.id}
                         />
-                        <SubmitComment dishID = {props.dish.id} addComment = {props.addComment}/>
+                        <SubmitComment dishID = {props.dish.id} postComment = {props.postComment}/>
                     </div>  
                 </div>
             </div>
