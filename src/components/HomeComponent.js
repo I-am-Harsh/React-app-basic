@@ -3,6 +3,7 @@ import { Card, CardText, CardBody, CardTitle, CardSubtitle} from 'reactstrap';
 import { CardImg } from 'reactstrap';
 import { Loading } from './LoadingComponent';
 import { baseUrl } from './../shared/baseUrl';
+import {FadeTransform} from 'react-transition-components';
 //why this shit {}
 const RenderCard = ({item, isLoading, errMess}) =>{
     if(isLoading){
@@ -20,16 +21,18 @@ const RenderCard = ({item, isLoading, errMess}) =>{
     }
     else{
         return(
-            <Card>
-                <CardImg src = { baseUrl + item.image} alt = {item.image} />
-                <CardBody>
-                    <CardTitle><b>{item.name}</b></CardTitle>
-                    {item.designation ? <CardSubtitle> {item.designation} </CardSubtitle> : null}
-                    <CardText>
-                        {item.description}
-                    </CardText>
-                </CardBody>
-            </Card>
+            <FadeTransform intransformProps={{exitTransform : 'scale(0.5) translateY(-50%)'}}>
+                <Card>
+                    <CardImg src = { baseUrl + item.image} alt = {item.image} />
+                    <CardBody>
+                        <CardTitle><b>{item.name}</b></CardTitle>
+                        {item.designation ? <CardSubtitle> {item.designation} </CardSubtitle> : null}
+                        <CardText>
+                            {item.description}
+                        </CardText>
+                    </CardBody>
+                </Card>
+            </FadeTransform>
         );  
     }
 }

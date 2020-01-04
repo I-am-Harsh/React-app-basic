@@ -138,13 +138,15 @@ const DishDetail = (props) =>{
                 </div>
                 <div className = 'row'>
                     <div className="col-md-6">
-                        <Card>
-                            <CardImg width="50%" src={baseUrl + dish.image} alt={dish.name} />
-                            <CardBody>
-                                <CardTitle><b>{dish.name}</b></CardTitle>
-                                <CardText> {dish.description} </CardText>
-                            </CardBody>
-                        </Card>  
+                        <FadeTransform>
+                            <Card>
+                                <CardImg width="50%" src={baseUrl + dish.image} alt={dish.name} />
+                                <CardBody>
+                                    <CardTitle><b>{dish.name}</b></CardTitle>
+                                    <CardText> {dish.description} </CardText>
+                                </CardBody>
+                            </Card>  
+                        </FadeTransform>
                     </div>
                     <div className = 'col-md-6 mb-3'>
                         <Comm comment = {props}
